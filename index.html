@@ -1,44 +1,31 @@
 <!doctype html>
-
-<html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IoT-Laite</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+  </head>
   <body>
-    <h1>Phone Sensor Demo</h1>
-
-    <button onclick="startSensors()">Start Sensors</button>
-
-    <h2>Accelerometer</h2>
-
-    <p>X: <span id="x">0</span></p>
-
-    <p>Y: <span id="y">0</span></p>
-
-    <p>Z: <span id="z">0</span></p>
-
-    <script>
-      async function startSensors() {
-        // Required for iPhone/iPad
-
-        if (typeof DeviceMotionEvent.requestPermission === "function") {
-          const permission = await DeviceMotionEvent.requestPermission();
-
-          if (permission !== "granted") {
-            alert("Permission denied");
-
-            return;
-          }
-        }
-
-        window.addEventListener("devicemotion", function (event) {
-          document.getElementById("x").textContent =
-            event.accelerationIncludingGravity.x?.toFixed(2);
-
-          document.getElementById("y").textContent =
-            event.accelerationIncludingGravity.y?.toFixed(2);
-
-          document.getElementById("z").textContent =
-            event.accelerationIncludingGravity.z?.toFixed(2);
-        });
-      }
-    </script>
+    <div class="main">
+      <h1>Saunan lämpötila</h1>
+      <pre id="output">loading...</pre>
+      <div class="main2">
+        <div id="gauge_div" class="gauge"></div>
+        <div id="chart_div" class="chart"></div>
+      </div>
+      <button>Näytä koko historia</button>
+      <p>Karl Erich Remmelgas</p>
+    </div>
+    <script src="script/gauge_script.js"></script>
+    <script src="script/chart_script.js"></script>
   </body>
 </html>
